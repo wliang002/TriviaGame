@@ -8,6 +8,7 @@ $(document).ready(function () {
     var correct;
     var incorrect;
     var unanswered;
+    var finalscore;
 
     // trivia questions saved as an array of objects
     var trivia = [
@@ -15,9 +16,8 @@ $(document).ready(function () {
             question: "What food do Ross and Rachel Share in the pilot episode?",
             choices: ["An Oreo", "A Pop Tart", "An Oatmeal Raisin Cookie", "A Chocolate Chip Cookie"],
             answer: "An Oreo",
-            img: "oreo.jpg"
+            img: "oreo.png"
         },
-
         {
             question: "Where does Chandler tell Janice he's been relocated?",
             choices: ["Yemen", "Russia", "Guam", "Minsk"],
@@ -29,19 +29,25 @@ $(document).ready(function () {
             question: "Who's Fiance Wants The Heavy Metal Band 'Carcass' At Their Wedding?",
             choices: ["Janice", "Megan", "Ursula", "Monica"],
             answer: "Megan",
-            img: "megan.jpg"
+            img: "megan.gif"
         },
         {
-            question: "How Many Roses Does Ross Send To Emily?",
-            choices: ["76", "71", "74", "72"],
-            answer: "72",
-            img: "rose.jpg"
+            question: "What was the name of the self help book that the girls loved?",
+            choices: ["Be Your Own Person", "Be Your Own Cleansing Pool", "Be Your Own Windkeeper", "Be Your Own Lightning Bearer"],
+            answer: "Be Your Own Windkeeper",
+            img: "book.jpeg"
+        },
+        {
+            question: "Who is in the 'I hate Rachel' club with Ross?",
+            choices: ["Monica", "Will", "Barry", "Mindy"],
+            answer: "Will",
+            img: "will.gif"
         },
         {
             question: "What Is The Name Of The Girl Chandler Has To Fire?",
             choices: ["Nina", "Nora", "Natalie", "Nicki"],
             answer: "Nina",
-            img: "nina.jpg"
+            img: "nina.gif"
         },
         {
             question: "What Was Joey's Stuffed Penguin Called?",
@@ -50,10 +56,10 @@ $(document).ready(function () {
             img: "hugsy.gif"
         },
         {
-            question: "What Car Did Phoebe Briefly Live In?",
-            choices: ["A New York Cab", "A Pick up Truck", "A Buick Lesabre", "A Buick Wagon"],
-            answer: "A Buick Lesabre",
-            img: "lesabre.jpg"
+            question: "Who gave Chandler a mixtape?",
+            choices: ["Monica", "Janice", "Joanna", "Kathy"],
+            answer: "Janice",
+            img: "janice.gif"
         },
         {
             question: "When Carol Is In Labour With Ben, Joey Meets A Pregnant Woman. What Is Her Name?",
@@ -62,39 +68,35 @@ $(document).ready(function () {
             img: "lydia.png"
         },
         
+        
+        {
+            question: "What's Joey's catchphrase?",
+            choices: ["Hey what's up?", "How you doin?", "How are ya?", "How's it hanging?"],
+            answer: "How you doin?",
+            img: "joey.gif"
+        },
+
+        {
+            question: "What fake name does Phoebe always use?",
+            choices: ["Cleopatra", "Carol Willick", "Regina Phalange", "Ursula"],
+            answer: "Regina Phalange",
+            img: "regina.gif"
+        },
         {
             question: "What Does Mona Bring Ross Back From A Trip?",
             choices: ["Rock Candy", "Strawberry Taffy", "Gummy Bears", "Saltwater Taffy"],
             answer: "Saltwater Taffy",
             img: "salt.png"
         },
-        {
-            question: "What Was The Name Of Ross And Monica's grandmother that passed away in the show?",
-            choices: ["Marilyn", "Sylvia", "Sophia", "Althea"],
-            answer: "Althea",
-            img: "althea.png"
-        },
 
         {
-            question: "What Does Pete Bring Back From Japan For Monica?",
-            choices: ["Hotel Toiletries", "Sweets", "Chocolate", "Cleaning Products"],
-            answer: "Hotel Toiletries",
-            img: "hotel.jpg"
-        },
-
-        {
-            question: "What Is The Name Of The Cat Phoebe Thinks Is Her Mother?",
+            question: "What's the name of the cat Phoebe thinks is her mother?",
             choices: ["Chi Chi", "Julio", "Marcel", "Huey"],
             answer: "Julio",
             img: "julio.gif"
         },
 
-        {
-            question: "What was the name of the self help book that the girls loved?",
-            choices: ["Be Your Own Person", "Be Your Own Cleansing Pool", "Be Your Own Windkeeper", "Be Your Own Lightning Bearer"],
-            answer: "Be Your Own Windkeeper",
-            img: "book.jpeg"
-        },
+       
 
         {
             question: "What is the 'giant poking device' made from?",
@@ -121,7 +123,7 @@ $(document).ready(function () {
     // initialize game
     function initialize() {
         // initialize game variables  
-        totalTime = 10;
+        totalTime = 15;
         questionCount = 0;
         correct = 0;
         incorrect = 0;
@@ -136,7 +138,7 @@ $(document).ready(function () {
     // start trivia questions
     function startGame() {
         // timer reset for every question
-        totalTime = 10;
+        totalTime = 15;
         // show game data: timer and trivia questions
         $('#game-wrapper').show();
 
@@ -258,14 +260,16 @@ $(document).ready(function () {
                 $('#trivia-wrapper').empty();
                 $('#game-data').addClass('hide');
                 var gameOver = $('<h1>').text('GAME OVER!').css("color", "yellow");
-                var correctScore = $('<p>').text("Total Correct Answers:" + correct);
-                var incorrectScore = $('<p>').text("Total Incorrect answers:" + incorrect);
-                var unansweredScore = $('<p>').text("Total Unanswered:" + unanswered);
+                finalscore = Math.round(correct / trivia.length * 100);
+                var score = $('<h3>').text("Your score: " + finalscore + "%").css("color", "dodgerblue");
+                var correctScore = $('<p>').text("Total Correct Answers: " + correct);
+                var incorrectScore = $('<p>').text("Total Incorrect answers: " + incorrect);
+                var unansweredScore = $('<p>').text("Total Unanswered: " + unanswered);
                 var startOver = $('<a>').attr('href', "index.html").text("Start Over?").addClass("btn btn-info again");
-                $('#trivia-wrapper').append(gameOver, correctScore, incorrectScore, unansweredScore, startOver);
+                $('#trivia-wrapper').append(gameOver, score,correctScore, incorrectScore, unansweredScore, startOver);
 
             }
-        }, 3000);
+        }, 4000);
     }
 });
 
