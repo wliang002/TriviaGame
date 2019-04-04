@@ -215,12 +215,10 @@ $(document).ready(function () {
 
     // count down and run out of time
     function count() {
-        // totalTime decrease by 1
-        totalTime--;
-        $('#timer').text(totalTime);
+       
 
         // if totalTime is 0, unanswered question count goes up by 1. 
-        if (totalTime === 0) {
+        if (totalTime < 1) {
             // restart timer.
             clearInterval(timer);
             unanswered++;
@@ -229,7 +227,14 @@ $(document).ready(function () {
             questionCount++;
             // 3 seconds pause before next question
             timeout();
+        } else{
+            // totalTime decrease by 1
+            totalTime--;
         }
+
+         
+         
+         $('#timer').text(totalTime);
     }
 
     function displayAnswer() {
