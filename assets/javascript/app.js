@@ -101,7 +101,7 @@ $(document).ready(function () {
         {
             question: "What is the 'giant poking device' made from?",
             choices: ["pencils", "sticks from a tree", "chopsticks", "straws"],
-            answer: "chopstick",
+            answer: "chopsticks",
             img: "poking.gif"
         },    
         {
