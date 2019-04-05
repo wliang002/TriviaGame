@@ -1,3 +1,3 @@
 # TriviaGame
 # Ultimate Friends Trivia Game
-# This game is wrote in JQuery
+# This game is in JQuery
